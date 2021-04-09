@@ -1,0 +1,88 @@
+{% extends "tdapp/base.html" %}
+{% block body_block %}
+{% load static %}
+<div class="container">
+  <div class="jumbotron">
+    
+    {% if user.is_authenticated %}
+    <h1>Welcome To Teacher Directory App</h1>
+      <div class="hello-name">
+
+       <h2>Hello<a href="tdapp/teacher_details/{{user.userprofileinfo.id}}">
+        {{ user.username }}!</h2></a>
+        <h2>Filter by Last Name or any letter of last name</h2>
+      </div>
+      <div class="seach-name">
+        <style>
+            body {
+
+              font-family: Arial;
+              
+            }
+          
+          * {
+            box-sizing: border-box;
+          }
+          
+          form.example input[type=text] {
+            padding: 10px;
+            font-size: 17px;
+            border: 1px solid grey;
+            float: left;
+            width: 80%;
+            background: #f1f1f1;
+          }
+          
+          form.example button {
+            float: left;
+            width: 20%;
+            padding: 10px;
+            background: #2196F3;
+            color: white;
+            font-size: 17px;
+            border: 1px solid grey;
+            border-left: none;
+            cursor: pointer;
+          }
+          
+          form.example button:hover {
+            background: #0b7dda;
+          }
+          
+          form.example::after {
+            content: "";
+            clear: both;
+            display: table;
+          }
+          </style>
+          <form class="example" action="{% url 'tdapp:filter_directory' %}" enctype="multipart/form-data" method="GET" style="margin:auto;max-width:300px">
+            {% csrf_token %}
+            <input type="text" placeholder="Search.." name="si">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+      </div>
+      <br><br>
+    <table>
+      <thead>
+        <th>User Names</th>
+        <th>Details</th>
+      </thead>
+      <tbody>
+        {% for details in all_details %}
+        <tr>
+          <td>{{details.user.username}}</td>
+          <td><a href="tdapp/teacher_details/{{details.user.userprofileinfo.id}}">Go to Details</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+        <h2>Welcome to the site!</h2>
+        <h2>Login to Enter the Teacher Directory App!</h2>
+        
+    {% endif %}
+
+  </div>
+</div>
+
+{% endblock %}

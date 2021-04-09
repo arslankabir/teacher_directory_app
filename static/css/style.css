@@ -1,0 +1,37 @@
+table, th, td {
+    border: 1px black solid;
+}
+table {
+  width: 70%;
+  float: left;
+  box-sizing:border-box;
+}
+
+/* .table_details .table{
+    border: 1px rgb(209, 31, 31) solid;
+    
+} */
+
+.details-name {
+    font-size: 1.5em;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: underline;
+    text-transform: capitalize;
+}
+.hello-name h2{
+    font-size:1.2em;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: capitalize;
+}
+
+
+
+/* search field css */
+.seach-name {
+  float: left;
+  box-sizing:border-box;
+}
+
+.container {
+  background-color: coral;
+}
